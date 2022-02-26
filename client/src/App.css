@@ -4,6 +4,10 @@ h2 {
     color: crimson;
 }
 
+h3 {
+    color: rgb(26, 96, 202);
+}
+
 table {
     font-family: arial, sans-serif;    
     border: 1px solid black;
@@ -11,12 +15,44 @@ table {
     border-color: #000000;
 }
 
+.saveToCSV {
+    border: 0px;
+}
+
+
+
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #f5e3cd;
+}
+
+th, #saveButton {
+    background-color: #e2bea0;     
+    text-align: center;
+}
+
+#resetButton {
+    background-color: #df3434;     
+}
+
+#saveResetCSV {
+    border: 0px solid #dddddd;
+}
+
+#saveResetCSV td {
+    border: 0px solid #dddddd;
+}
+
+#saveResetCSV tr {
+    background-color: #ffffff;
+}
+
+#extraSave, #extraReset {
+    text-align: center;
 }

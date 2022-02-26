@@ -52,8 +52,9 @@ export const getIncidentsData = (req, res) => {
      catch(e){
          console.log("OH, NO!\n" + e);
      }
-     finally {        
-         return incidents;
+     finally {  
+        
+        return incidents;
      }
  }
  
@@ -68,7 +69,7 @@ export const getIncidentsData = (req, res) => {
  function parseStream(stream) {
      
      let count    = 0;
-     let maxLines = 4; //Specifies the number of rows to process
+     let maxLines = 10; //Specifies the number of rows to process
  
      stream.pipe( csv( {separator:'|'})) //separater == column delimeter
          .on('data', (record) => { //'record' is the JSON object converted via headers+columns
@@ -77,7 +78,7 @@ export const getIncidentsData = (req, res) => {
                  csvStream.end();
                  stream.destroy();                 
              } else {                
-                 createRecordObject(record); //Creates a record object from a JSON object (e.g., record)              
+                 createRecordObject(count, record); //Creates a record object from a JSON object (e.g., record)              
                  count++;
              }
          });
@@ -89,9 +90,10 @@ export const getIncidentsData = (req, res) => {
                   & adds to the 'incidents' array
      @param       record - a JSON object piped from the readStream
  */
- function createRecordObject(record) {
+ function createRecordObject(count, record) {
      //Custom 'incident' object mapped from columns: A-F,K,M,R of CSV file
      const incident = {  
+         id:                     count,
          incidentNumber:         record['Incident Number'], //A
          incidentType:           record['Incident Types'],        
          reportedDate:           record['Reported Date'],        
